@@ -1,0 +1,126 @@
+{
+  "publisher": "guibinkong",
+  "name": "prompt-playground",
+  "displayName": "prompt_playground",
+  "description": "Test your prompt against multiple LLMs, such as OpenAI, Google Vertex AI, Cohere, etc.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Machine Learning",
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "python",
+    "java",
+    "javascript",
+    "typescript",
+    "autocomplete",
+    "ai"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pp.playground",
+        "title": "Prompt Playground"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+          {
+              "id": "pp-sidebar",
+              "title": "Prompt Playground",
+              "icon": "prompt-playground.png"
+          }
+      ]
+    },
+    "views": {
+      "pp-sidebar": [
+        {
+          "type": "webview",
+          "id": "pp.llm_options",
+          "name": "Settings"
+        },
+        {
+          "type": "webview",
+          "id": "pp.tmpl_editor",
+          "name": "Templates",
+          "visibility": "collapsed"
+        },
+        {
+          "type": "webview",
+          "id": "pp.retrieval_editor",
+          "name": "Retrievals",
+          "visibility": "collapsed"
+        }
+      ]
+    },
+    "configuration": [
+      {
+          "title": "Prompt Playground",
+          "properties": {
+            "pp.temperature": {
+              "type": "number",
+              "default": 0.8,
+              "maximum": 1,
+              "minimum": 0.01,
+              "description": "The randomness of output, range: [0.01, 1]. Higher temperature means more randomness, and the model will return creative results. "
+            },
+            "pp.topp": {
+                "type": "number",
+                "default": 0.95,
+                "maximum": 1,
+                "minimum": 0,
+                "description": "The candidate tokens whose probabilities sum to p, range [0, 1]. Top-p=0 means disabled."
+            },
+            "pp.topk": {
+                "type": "number",
+                "default": 0,
+                "maximum": 40,
+                "minimum": 0,
+                "description": "The k candidate tokens with the highest probabilities, range [0, 40]. Top-k=0 means disabled."
+            },
+            "pp.privacy": {
+              "type": "boolean",
+              "description": "Allow providers to use your generated code for future model training.",
+              "default": null
+            },
+            "pp.enable":{
+              "type":"boolean",
+              "description": "Enable/disable code generation or translation.",
+              "default":true
+            }
+          }
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "pp.playground",
+        "key": "Ctrl+W"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8"
+  }
+}

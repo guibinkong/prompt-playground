@@ -1,0 +1,9 @@
+#file: noinspection AppEngineThreadsafe
+runtime: python
+env: flex
+
+runtime_config:
+  operating_system: "ubuntu22"
+  runtime_version: "3.11"
+
+entrypoint: streamlit run main.py --server.port $PORT

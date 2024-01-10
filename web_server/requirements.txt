@@ -1,0 +1,13 @@
+jsonpickle>=3.0
+streamlit>=1.29
+google-cloud-aiplatform>=1.38
+google-cloud-ndb>=2.2
+openai>=1.6
+langchain>=0.0.354
+cohere>=4.40
+chromadb>=0.4.22
+tiktoken>=0.5.2
+beautifulsoup4>=4.12.2
+html2text>=2020.1.16
+
+
